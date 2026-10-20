@@ -7,6 +7,7 @@ const STORAGE_KEYS = {
   ATTEMPT_HISTORY: 'ds_quiz_attempt_history',
   TIMER_PRESET: 'ds_quiz_timer_preset',
   CUSTOM_TIMER_MINUTES: 'ds_quiz_custom_timer_minutes',
+  QUESTION_COUNT: 'ds_quiz_question_count',
 };
 
 export const storage = {
@@ -162,5 +163,17 @@ export const storage = {
 
   setCustomTimerMinutes(mins: number): void {
     localStorage.setItem(STORAGE_KEYS.CUSTOM_TIMER_MINUTES, mins.toString());
+  },
+
+  // --- Question Count Preferences ---
+  getQuestionCount(): number {
+    const raw = localStorage.getItem(STORAGE_KEYS.QUESTION_COUNT);
+    if (!raw) return 10; // Default to 10 questions (mobile-optimized standard)
+    const val = parseInt(raw, 10);
+    return isNaN(val) || val <= 0 ? 10 : val;
+  },
+
+  setQuestionCount(count: number): void {
+    localStorage.setItem(STORAGE_KEYS.QUESTION_COUNT, count.toString());
   },
 };

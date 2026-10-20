@@ -16,6 +16,11 @@ export const MobileNavPill: React.FC<MobileNavPillProps> = ({
   onOpenHistory,
   className = '',
 }) => {
+  // Hide bottom navigation pill during active quiz so it never obstructs exam questions or actions bar
+  if (currentScreen === 'quiz') {
+    return null;
+  }
+
   return (
     <GlassSurface
       as="nav"
@@ -37,9 +42,9 @@ export const MobileNavPill: React.FC<MobileNavPillProps> = ({
 
       <button
         type="button"
-        className={`mobile-nav__item ${currentScreen === 'quiz' ? 'mobile-nav__item--active' : ''}`}
+        className="mobile-nav__item"
         onClick={() => onNavigate('quiz')}
-        disabled={!examInProgress && currentScreen !== 'quiz'}
+        disabled={!examInProgress}
       >
         <span className="mobile-nav__icon">
           <ClockIcon size={20} />

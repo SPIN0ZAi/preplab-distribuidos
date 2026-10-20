@@ -8,7 +8,7 @@
   .mobile-nav-pill {
     display: flex;
     position: fixed;
-    bottom: 16px;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
     left: 16px;
     right: 16px;
     max-width: 420px;
@@ -19,6 +19,7 @@
     justify-content: space-around;
     padding: 0 8px;
     box-sizing: border-box;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
   }
 
   .mobile-nav__item {
@@ -39,6 +40,12 @@
     transition: all 180ms ease;
     min-width: 60px;
     height: 48px;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .mobile-nav__item:active {
+    transform: scale(0.92);
   }
 
   .mobile-nav__item:focus-visible {

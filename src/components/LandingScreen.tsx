@@ -37,6 +37,12 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
   const [timerPreset, setTimerPresetState] = useState<TimerPreset>(() => storage.getTimerPreset());
   const [isCustomTimer, setIsCustomTimer] = useState<boolean>(false);
   const [customMinutes, setCustomMinutes] = useState<number>(() => storage.getCustomTimerMinutes());
+  const [questionCount, setQuestionCountState] = useState<number>(() => storage.getQuestionCount());
+
+  const handleSelectQuestionCount = (count: number) => {
+    setQuestionCountState(count);
+    storage.setQuestionCount(count);
+  };
 
   const attempts = storage.getAttempts();
   const totalAttempts = attempts.length;
@@ -69,7 +75,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
     } else if (timerPreset > 0) {
       duration = timerPreset;
     }
-    onStartQuiz(selectedLab, duration);
+    onStartQuiz(selectedLab, duration, questionCount);
   };
 
   return (
@@ -265,16 +271,16 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
             </div>
             <h4 className="launch-card__title">Examen Mixto (P1 + P2)</h4>
             <p className="launch-card__desc">
-              Simula el examen final combinando 10 preguntas de Docker y 10 preguntas de gRPC y Concurrencia.
+              Simula el examen combinando preguntas de Docker y de gRPC y Concurrencia con distribución equilibrada.
             </p>
             <ul className="launch-card__topics">
               <li className="launch-card__topic-item">
                 <span className="launch-card__topic-bullet" />
-                <span>10 preguntas aleatorias de Lab 1</span>
+                <span>Preguntas equilibradas de Lab 1 (Docker)</span>
               </li>
               <li className="launch-card__topic-item">
                 <span className="launch-card__topic-bullet" />
-                <span>10 preguntas aleatorias de Lab 2</span>
+                <span>Preguntas equilibradas de Lab 2 (gRPC)</span>
               </li>
               <li className="launch-card__topic-item">
                 <span className="launch-card__topic-bullet" />
@@ -307,6 +313,37 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
             />
           </div>
 
+          {/* Question Count Selector (5, 10, or 20) */}
+          <div className="config-card__field">
+            <span className="config-card__label">Número de Preguntas</span>
+            <div className="question-count-pill-group">
+              <Button
+                variant={questionCount === 5 ? 'primary' : 'secondary'}
+                size="sm"
+                shape="pill"
+                onClick={() => handleSelectQuestionCount(5)}
+              >
+                ⚡ 5 (Rápido / Móvil)
+              </Button>
+              <Button
+                variant={questionCount === 10 ? 'primary' : 'secondary'}
+                size="sm"
+                shape="pill"
+                onClick={() => handleSelectQuestionCount(10)}
+              >
+                🎯 10 (Recomendado)
+              </Button>
+              <Button
+                variant={questionCount === 20 ? 'primary' : 'secondary'}
+                size="sm"
+                shape="pill"
+                onClick={() => handleSelectQuestionCount(20)}
+              >
+                📋 20 (Completo)
+              </Button>
+            </div>
+          </div>
+
           <div className="config-card__field" style={{ flex: 2 }}>
             <span className="config-card__label">Temporizador de Examen</span>
             <div className="timer-pill-group">
@@ -332,7 +369,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                 shape="pill"
                 onClick={() => handleSelectPreset(1200)}
               >
-                20 min (Recomendado)
+                20 min
               </Button>
               <Button
                 variant={!isCustomTimer && timerPreset === 1800 ? 'primary' : 'secondary'}
@@ -395,7 +432,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
           onClick={handleStart}
           style={{ minWidth: '280px' }}
         >
-          Comenzar Práctica (20 Preguntas)
+          {`Comenzar Práctica (${questionCount} Preguntas)`}
         </Button>
 
         <Button

@@ -180,6 +180,10 @@
   transform: translateY(-1px);
 }
 
+.option-card:active {
+  transform: scale(0.985);
+}
+
 .option-card:focus-visible {
   outline: 2px solid var(--venus-primary-indigo);
   outline-offset: 2px;
@@ -233,12 +237,55 @@
   gap: 16px;
 }
 
+@media (max-width: 768px) {
+  .quiz-view {
+    padding-bottom: calc(90px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .quiz-actions-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 55;
+    margin: 0;
+    border-radius: 20px 20px 0 0;
+    padding: 12px 16px;
+    padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    background: var(--venus-card-bg-glass, rgba(255, 255, 255, 0.95));
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-top: 1px solid var(--venus-card-border);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .quiz-actions-bar button {
+    flex: 1;
+    min-height: 46px;
+  }
+}
+
 @media (max-width: 640px) {
   .question-card-venus {
-    padding: 20px 18px;
+    padding: 20px 16px;
     border-radius: 18px;
+    gap: 18px;
   }
   .question-card__prompt {
-    font-size: 16px;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+  .option-card {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+  .option-label {
+    font-size: 14px;
+  }
+  .quiz-header-bar {
+    padding: 10px 14px;
   }
 }

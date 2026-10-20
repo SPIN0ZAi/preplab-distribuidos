@@ -280,7 +280,8 @@
   color: var(--venus-text-headline);
 }
 
-.timer-pill-group {
+.timer-pill-group,
+.question-count-pill-group {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -303,6 +304,37 @@
 
 @media (max-width: 640px) {
   .metrics-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .metric-card {
+    padding: 12px 14px;
+    gap: 10px;
+    border-radius: var(--venus-radius-md, 14px);
+  }
+
+  .metric-card__icon-wrap {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+  }
+
+  .metric-card__value {
+    font-size: 1.25rem;
+  }
+
+  .metric-card__label {
+    font-size: 11px;
+  }
+
+  .config-card {
+    padding: 16px;
+    border-radius: var(--venus-radius-lg, 16px);
+  }
+
+  .launch-card {
+    padding: 18px 16px;
+    border-radius: var(--venus-radius-lg, 16px);
   }
 }

@@ -27,14 +27,15 @@ export const App: React.FC = () => {
     }
   }, []);
 
-  // Start new 20-question randomized quiz
+  // Start new randomized quiz with user-selected question count (5, 10, or 20)
   const handleStartQuiz = async (
     labType: 'lab1' | 'lab2' | 'mixed',
-    timerDurationSeconds: number | null
+    timerDurationSeconds: number | null,
+    questionCount: number = 10
   ) => {
     setIsLoading(true);
     try {
-      const questions = await selectQuestions(labType, 20);
+      const questions = await selectQuestions(labType, questionCount);
 
       const newSession: QuizSessionState = {
         questions,

@@ -141,6 +141,7 @@
 
   .modal-sheet__footer {
     padding: 14px 16px;
+    padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
   }
 }
 

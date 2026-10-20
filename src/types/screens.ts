@@ -2,7 +2,11 @@
 import { AttemptResult, QuizSessionState } from './quiz';
 
 export interface LandingScreenProps {
-  onStartQuiz: (labType: 'lab1' | 'lab2' | 'mixed', timerDurationSeconds: number | null) => void;
+  onStartQuiz: (
+    labType: 'lab1' | 'lab2' | 'mixed',
+    timerDurationSeconds: number | null,
+    questionCount?: number
+  ) => void;
   onResumeQuiz: () => void;
   hasActiveSession: boolean;
   onOpenHistory: () => void;

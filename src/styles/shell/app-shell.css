@@ -3,6 +3,7 @@
 .app-shell {
   display: flex;
   min-height: 100vh;
+  min-height: 100dvh;
   box-sizing: border-box;
   position: relative;
   z-index: 1;
@@ -35,13 +36,20 @@
 
 /* Mobile Layout (< 768px) */
 @media (max-width: 768px) {
+  .app-shell {
+    min-height: 100dvh;
+  }
+
   .app-shell__container {
-    padding: 12px 12px 96px 12px;
+    padding-top: max(10px, env(safe-area-inset-top, 0px));
+    padding-left: max(12px, env(safe-area-inset-left, 0px));
+    padding-right: max(12px, env(safe-area-inset-right, 0px));
+    padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
     gap: 0;
   }
 
   .app-shell__main {
-    padding-top: 4px;
+    padding-top: 2px;
     width: 100%;
   }
 }
