@@ -1,0 +1,83 @@
+/* src/styles/theme.css */
+@import './tokens/venus-tokens.css';
+@import './tokens/glass-tokens.css';
+@import './glass-surface.css';
+@import './primitives/button.css';
+@import './primitives/badge.css';
+@import './primitives/segmented-control.css';
+@import './primitives/text-input.css';
+@import './shell/app-shell.css';
+@import './shell/inset-sidebar.css';
+@import './shell/inset-topbar.css';
+@import './shell/mobile-nav-pill.css';
+@import './primitives/modal-sheet.css';
+@import './components/history-modal.css';
+@import './charts/charts.css';
+@import './screens/landing-screen.css';
+@import './screens/quiz-screen.css';
+@import './screens/results-screen.css';
+@import './motion.css';
+@import './hardening.css';
+
+/* Global Base Theme Bindings */
+html {
+  background-color: var(--venus-bg-canvas);
+  color: var(--venus-text-body);
+  font-family: var(--font-sans);
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+/* Dark Mode Overrides */
+[data-theme="dark"] {
+  /* Canvas & Card Surfaces */
+  --venus-bg-canvas: #0B0F19;
+  --venus-card-bg: #111827;
+  --venus-card-bg-subtle: #172033;
+  --venus-card-border: rgba(255, 255, 255, 0.08);
+
+  /* Typography Colors */
+  --venus-text-headline: #F8FAFC;
+  --venus-text-body: #E2E8F0;
+  --venus-text-muted: #94A3B8;
+  --venus-text-disabled: #64748B;
+
+  /* Shadows */
+  --venus-shadow-card: 0 18px 40px rgba(0, 0, 0, 0.45);
+  --venus-shadow-hover: 0 22px 45px rgba(0, 0, 0, 0.60);
+  --venus-chart-bar-inactive: #1E293B;
+
+  /* Dark Liquid Glass Fills */
+  --glass-fill-thin: rgba(17, 24, 39, 0.38);
+  --glass-fill-regular: rgba(17, 24, 39, 0.54);
+  --glass-fill-thick: rgba(17, 24, 39, 0.72);
+  --glass-fill-accent: rgba(99, 102, 241, 0.20);
+
+  /* Specular Rim & Borders */
+  --glass-border: 1px solid rgba(255, 255, 255, 0.12);
+  --glass-border-subtle: 1px solid rgba(255, 255, 255, 0.06);
+  --glass-edge-highlight: inset 0 1px 1px 0 rgba(255, 255, 255, 0.22);
+  --glass-edge-shade: inset 0 -1px 1px 0 rgba(0, 0, 0, 0.35);
+  --glass-sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.00) 100%);
+
+  /* Dark Text on Glass */
+  --glass-text: #F8FAFC;
+  --glass-text-muted: #94A3B8;
+
+  /* Dark Fallbacks */
+  --glass-fallback-fill: rgba(17, 24, 39, 0.95);
+  --glass-fallback-border: rgba(255, 255, 255, 0.15);
+}
+
+/* Forced Colors High-Contrast Mode */
+@media (forced-colors: active) {
+  :root, [data-theme="dark"] {
+    --venus-card-border: 1px solid CanvasText;
+    --glass-border: 1px solid CanvasText;
+    --glass-edge-highlight: none;
+    --glass-edge-shade: none;
+    --glass-sheen: none;
+    --glass-fill-thin: Canvas;
+    --glass-fill-regular: Canvas;
+    --glass-fill-thick: Canvas;
+  }
+}

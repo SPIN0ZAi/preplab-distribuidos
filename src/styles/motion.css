@@ -1,0 +1,140 @@
+/* ==========================================================================
+   MOTION & MICRO-INTERACTION SYSTEM (Apple Liquid Glass & Venus Soft-UI)
+   ========================================================================== */
+
+/* GPU Layer Promotion Helper */
+.gpu-accelerated {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* --------------------------------------------------------------------------
+   Hover Micro-Lifts (Venus Cards)
+   Guarded by hover: hover and pointer: fine to prevent touch stickiness
+   -------------------------------------------------------------------------- */
+.hover-lift {
+  transition: transform var(--motion-duration-normal) var(--motion-ease-spring),
+              box-shadow var(--motion-duration-normal) var(--motion-ease-spring),
+              border-color var(--motion-duration-fast) var(--motion-ease-smooth);
+  will-change: transform, box-shadow;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hover-lift:hover {
+    transform: translateY(var(--motion-lift-y));
+    box-shadow: var(--venus-shadow-hover);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Tactile Press Feedback (Buttons, Tabs, Chips)
+   -------------------------------------------------------------------------- */
+.press-tactile {
+  transition: transform var(--motion-duration-fast) var(--motion-ease-spring),
+              filter var(--motion-duration-fast) var(--motion-ease-smooth);
+}
+
+.press-tactile:active:not(:disabled) {
+  transform: scale(var(--motion-press-scale));
+}
+
+/* --------------------------------------------------------------------------
+   Celebratory Passing Animations (Results Screen)
+   -------------------------------------------------------------------------- */
+.celebrate-pass {
+  position: relative;
+  overflow: hidden;
+  animation: celebrate-card-glow 3s infinite ease-in-out;
+}
+
+@keyframes celebrate-card-glow {
+  0%, 100% {
+    box-shadow: var(--venus-shadow-card);
+  }
+  50% {
+    box-shadow: var(--venus-shadow-glow), 0 0 35px rgba(67, 24, 255, 0.22);
+  }
+}
+
+/* Badge celebratory pop entrance */
+.badge-pop {
+  animation: badge-spring-pop var(--motion-duration-deliberate) var(--motion-ease-bounce) both;
+}
+
+@keyframes badge-spring-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Diagonal Specular Sheen Sweep for Passed Exam Hero */
+.celebrate-pass::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: rotate(25deg) translateY(-100%);
+  animation: celebrate-sheen 4s infinite 1s ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes celebrate-sheen {
+  0% {
+    transform: rotate(25deg) translateY(-100%);
+  }
+  30%, 100% {
+    transform: rotate(25deg) translateY(100%);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Segmented Control Indicator Slide
+   -------------------------------------------------------------------------- */
+.segmented-indicator {
+  transition: transform var(--motion-duration-normal) var(--motion-ease-spring),
+              width var(--motion-duration-normal) var(--motion-ease-spring);
+}
+
+/* --------------------------------------------------------------------------
+   Global Accessibility Override: Reduced Motion
+   WCAG 2.2 Criterion 2.3.3 & Vestibular Protection
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hover-lift:hover {
+    transform: none !important;
+  }
+
+  .press-tactile:active:not(:disabled) {
+    transform: none !important;
+  }
+
+  .celebrate-pass::after {
+    display: none !important;
+  }
+}

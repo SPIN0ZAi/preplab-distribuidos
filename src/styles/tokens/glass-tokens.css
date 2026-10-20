@@ -1,0 +1,72 @@
+/* src/styles/tokens/glass-tokens.css */
+/* Apple Liquid Glass Chrome Layer Tokens (iOS 26 aesthetic) */
+
+:root {
+  /* Blur Tiers (Desktop Baseline) */
+  --glass-blur-thin: 8px;
+  --glass-blur-regular: 18px;
+  --glass-blur-thick: 28px;
+  --glass-blur-mobile: 12px;
+
+  /* Optical Saturation Boost */
+  --glass-saturate: 160%;
+
+  /* Translucent Fills (Light Mode Baseline) */
+  --glass-fill-thin: rgba(255, 255, 255, 0.32);
+  --glass-fill-regular: rgba(255, 255, 255, 0.48);
+  --glass-fill-thick: rgba(255, 255, 255, 0.68);
+  --glass-fill-accent: rgba(67, 24, 255, 0.12);
+
+  /* Specular Rim & Physical Border */
+  --glass-border: 1px solid rgba(255, 255, 255, 0.40);
+  --glass-border-subtle: 1px solid rgba(255, 255, 255, 0.20);
+  --glass-edge-highlight: inset 0 1px 1px 0 rgba(255, 255, 255, 0.70);
+  --glass-edge-shade: inset 0 -1px 1px 0 rgba(0, 0, 0, 0.04);
+  --glass-sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.00) 100%);
+
+  /* Layered Tinted Shadows */
+  --glass-shadow: 0 4px 16px rgba(67, 24, 255, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+  --glass-shadow-floating: 0 16px 36px rgba(67, 24, 255, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+  --glass-shadow-modal: 0 24px 60px rgba(27, 37, 89, 0.16), 0 4px 12px rgba(0, 0, 0, 0.06);
+
+  /* Text on Glass (High Contrast) */
+  --glass-text: #1B2559;
+  --glass-text-muted: #707EAE;
+
+  /* Spring Motion Tokens */
+  --glass-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --glass-duration: 200ms;
+
+  /* Fallback Fills (No Backdrop Support or Reduced Transparency) */
+  --glass-fallback-fill: rgba(244, 247, 254, 0.94);
+  --glass-fallback-border: #CBD5E1;
+}
+
+/* Reduced Transparency Mode Fallback */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass-blur-thin: 0px;
+    --glass-blur-regular: 0px;
+    --glass-blur-thick: 0px;
+    --glass-saturate: 100%;
+    --glass-fill-thin: var(--glass-fallback-fill);
+    --glass-fill-regular: var(--glass-fallback-fill);
+    --glass-fill-thick: var(--glass-fallback-fill);
+    --glass-border: 1px solid var(--glass-fallback-border);
+  }
+}
+
+/* Reduced Motion Mode Fallback */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --glass-duration: 0ms;
+  }
+}
+
+/* Mobile Screen Blur Radius Throttling */
+@media (max-width: 768px) {
+  :root {
+    --glass-blur-regular: var(--glass-blur-mobile);
+    --glass-blur-thick: 16px;
+  }
+}

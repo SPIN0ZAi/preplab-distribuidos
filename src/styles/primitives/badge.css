@@ -1,0 +1,89 @@
+/* src/styles/primitives/badge.css */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  border-radius: var(--venus-radius-pill, 9999px);
+  white-space: nowrap;
+  user-select: none;
+  line-height: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Sizes
+   -------------------------------------------------------------------------- */
+.badge--sm {
+  height: 22px;
+  padding: 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+
+.badge--md {
+  height: 26px;
+  padding: 0 12px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+
+/* --------------------------------------------------------------------------
+   Status Dot
+   -------------------------------------------------------------------------- */
+.badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  box-shadow: 0 0 6px currentColor;
+}
+
+/* --------------------------------------------------------------------------
+   Tone Variants
+   -------------------------------------------------------------------------- */
+
+/* Neutral */
+.badge--neutral {
+  background-color: var(--venus-bg-canvas);
+  color: var(--venus-text-muted);
+  border: 1px solid var(--venus-card-border);
+}
+
+/* Indigo */
+.badge--indigo {
+  background-color: rgba(67, 24, 255, 0.08);
+  color: var(--venus-primary-indigo);
+  border: 1px solid rgba(67, 24, 255, 0.18);
+}
+
+/* Success (Emerald) */
+.badge--success {
+  background-color: rgba(5, 205, 153, 0.12);
+  color: var(--venus-accent-emerald);
+  border: 1px solid rgba(5, 205, 153, 0.22);
+}
+
+/* Warning (Amber) */
+.badge--warning {
+  background-color: rgba(255, 181, 71, 0.15);
+  color: var(--venus-accent-amber);
+  border: 1px solid rgba(255, 181, 71, 0.25);
+}
+
+/* Danger (Coral) */
+.badge--danger {
+  background-color: rgba(238, 93, 80, 0.12);
+  color: var(--venus-accent-coral);
+  border: 1px solid rgba(238, 93, 80, 0.22);
+}
+
+/* Glass Badge */
+.badge--glass {
+  background-color: var(--glass-fill-thin);
+  -webkit-backdrop-filter: blur(var(--glass-blur-thin)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur-thin)) saturate(var(--glass-saturate));
+  color: var(--glass-text);
+  border: var(--glass-border);
+}

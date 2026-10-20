@@ -1,0 +1,244 @@
+/* src/styles/screens/quiz-screen.css */
+
+.quiz-view {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   Quiz Glass Header Controls
+   -------------------------------------------------------------------------- */
+.quiz-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  border-radius: var(--venus-radius-lg, 16px);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.quiz-header-bar__left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.quiz-header-bar__counter {
+  font-family: var(--font-display, var(--font-sans));
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--venus-text-headline);
+}
+
+.quiz-header-bar__counter-total {
+  font-weight: 500;
+  color: var(--venus-text-muted);
+}
+
+.quiz-header-bar__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   Question Navigation Pills Grid
+   -------------------------------------------------------------------------- */
+.quiz-nav-strip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 8px 12px;
+  border-radius: var(--venus-radius-md, 14px);
+  scrollbar-width: none;
+}
+
+.quiz-nav-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.quiz-nav-pill {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  border-radius: 10px;
+  border: 1px solid var(--venus-card-border);
+  background: var(--venus-bg-canvas);
+  color: var(--venus-text-muted);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 150ms ease;
+  position: relative;
+}
+
+.quiz-nav-pill:hover {
+  border-color: var(--venus-primary-indigo);
+  color: var(--venus-text-headline);
+}
+
+.quiz-nav-pill--current {
+  background-color: var(--venus-primary-indigo) !important;
+  color: #FFFFFF !important;
+  border-color: var(--venus-primary-indigo) !important;
+  box-shadow: 0 4px 12px rgba(67, 24, 255, 0.35);
+}
+
+.quiz-nav-pill--answered:not(.quiz-nav-pill--current) {
+  background-color: rgba(5, 205, 153, 0.12);
+  color: var(--venus-accent-emerald);
+  border-color: rgba(5, 205, 153, 0.30);
+}
+
+.quiz-nav-pill--flagged::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--venus-accent-amber);
+  box-shadow: 0 0 6px var(--venus-accent-amber);
+}
+
+/* --------------------------------------------------------------------------
+   Solid Venus Question Card (Rule 10 - Glass Discipline)
+   -------------------------------------------------------------------------- */
+.question-card-venus {
+  background-color: var(--venus-card-bg);
+  border: 1px solid var(--venus-card-border);
+  border-radius: var(--venus-radius-xl, 24px);
+  padding: 32px 30px;
+  box-shadow: var(--venus-shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.question-card__meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--venus-card-border);
+  padding-bottom: 16px;
+}
+
+.question-card__badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.question-card__prompt {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--venus-text-headline);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Options List & Selectable Choice Cards
+   -------------------------------------------------------------------------- */
+.options-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: var(--venus-radius-md, 14px);
+  border: 1.5px solid var(--venus-card-border);
+  background-color: var(--venus-bg-canvas);
+  cursor: pointer;
+  transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.option-card:hover {
+  border-color: rgba(67, 24, 255, 0.35);
+  background-color: var(--venus-card-bg);
+  transform: translateY(-1px);
+}
+
+.option-card:focus-visible {
+  outline: 2px solid var(--venus-primary-indigo);
+  outline-offset: 2px;
+}
+
+.option-card--selected {
+  border-color: var(--venus-primary-indigo) !important;
+  background-color: rgba(67, 24, 255, 0.05) !important;
+  box-shadow: 0 4px 14px rgba(67, 24, 255, 0.10);
+}
+
+.option-marker {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  border: 1.5px solid var(--venus-card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--venus-text-muted);
+  transition: all 180ms ease;
+}
+
+.option-card--selected .option-marker {
+  background-color: var(--venus-primary-indigo);
+  border-color: var(--venus-primary-indigo);
+  color: #FFFFFF;
+}
+
+.option-label {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--venus-text-headline);
+  line-height: 1.45;
+  flex: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Sticky Bottom Navigation Action Bar
+   -------------------------------------------------------------------------- */
+.quiz-actions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-radius: var(--venus-radius-lg, 16px);
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .question-card-venus {
+    padding: 20px 18px;
+    border-radius: 18px;
+  }
+  .question-card__prompt {
+    font-size: 16px;
+  }
+}

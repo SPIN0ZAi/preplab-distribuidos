@@ -1,0 +1,178 @@
+/* src/styles/primitives/button.css */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  isolation: isolate;
+  transform: translateZ(0);
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 180ms ease,
+              background-color 180ms ease,
+              border-color 180ms ease,
+              color 180ms ease;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--venus-primary-indigo);
+  outline-offset: 2px;
+}
+
+.btn:disabled,
+.btn--loading {
+  opacity: 0.55;
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: grayscale(25%);
+}
+
+/* --------------------------------------------------------------------------
+   Sizes
+   -------------------------------------------------------------------------- */
+.btn--sm {
+  height: 36px;
+  padding: 0 14px;
+  font-size: 13px;
+  border-radius: var(--venus-radius-sm, 10px);
+}
+
+.btn--md {
+  height: 44px;
+  padding: 0 20px;
+  font-size: 14px;
+  border-radius: var(--venus-radius-md, 12px);
+}
+
+.btn--lg {
+  height: 52px;
+  padding: 0 28px;
+  font-size: 15px;
+  border-radius: var(--venus-radius-lg, 16px);
+}
+
+/* --------------------------------------------------------------------------
+   Shapes
+   -------------------------------------------------------------------------- */
+.btn--rounded {
+  /* Default border-radius from size */
+}
+
+.btn--pill {
+  border-radius: var(--venus-radius-pill, 9999px);
+}
+
+.btn--circle {
+  border-radius: 50%;
+  padding: 0;
+}
+.btn--circle.btn--sm { width: 36px; }
+.btn--circle.btn--md { width: 44px; }
+.btn--circle.btn--lg { width: 52px; }
+
+/* --------------------------------------------------------------------------
+   Variants
+   -------------------------------------------------------------------------- */
+
+/* 1. Primary: Venus Electric Indigo */
+.btn--primary {
+  background-color: var(--venus-primary-indigo);
+  color: #FFFFFF;
+  box-shadow: 0 14px 24px rgba(67, 24, 255, 0.28);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background-color: #3812E0;
+  box-shadow: 0 18px 28px rgba(67, 24, 255, 0.38);
+  transform: translateY(-1px) translateZ(0);
+}
+
+.btn--primary:active:not(:disabled) {
+  transform: scale(0.97) translateZ(0);
+  box-shadow: 0 8px 16px rgba(67, 24, 255, 0.22);
+}
+
+/* 2. Secondary: Soft Neutral Card Surface */
+.btn--secondary {
+  background-color: var(--venus-bg-canvas);
+  color: var(--venus-text-headline);
+  border: 1px solid var(--venus-card-border);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.btn--secondary:hover:not(:disabled) {
+  background-color: var(--venus-card-bg-subtle, #EBEDF0);
+  border-color: rgba(67, 24, 255, 0.20);
+  transform: translateY(-1px) translateZ(0);
+}
+
+.btn--secondary:active:not(:disabled) {
+  transform: scale(0.97) translateZ(0);
+}
+
+/* 3. Glass: Apple Liquid Glass */
+.btn--glass {
+  background-color: var(--glass-fill-thin);
+  -webkit-backdrop-filter: blur(var(--glass-blur-thin)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur-thin)) saturate(var(--glass-saturate));
+  color: var(--glass-text);
+  border: var(--glass-border);
+  box-shadow: var(--glass-edge-highlight), var(--glass-edge-shade), var(--glass-shadow);
+}
+
+.btn--glass:hover:not(:disabled) {
+  background-color: var(--glass-fill-regular);
+  transform: translateY(-1px) translateZ(0);
+  box-shadow: var(--glass-edge-highlight), var(--glass-edge-shade), var(--glass-shadow-floating);
+}
+
+.btn--glass:active:not(:disabled) {
+  transform: scale(0.97) translateZ(0);
+}
+
+/* 4. Danger: Venus Coral Red */
+.btn--danger {
+  background-color: var(--venus-accent-coral);
+  color: #FFFFFF;
+  box-shadow: 0 14px 24px rgba(238, 93, 80, 0.28);
+}
+
+.btn--danger:hover:not(:disabled) {
+  background-color: #DE4C3F;
+  box-shadow: 0 18px 28px rgba(238, 93, 80, 0.38);
+  transform: translateY(-1px) translateZ(0);
+}
+
+.btn--danger:active:not(:disabled) {
+  transform: scale(0.97) translateZ(0);
+}
+
+/* 5. Ghost: Transparent with Indigo Accent */
+.btn--ghost {
+  background-color: transparent;
+  color: var(--venus-primary-indigo);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background-color: rgba(67, 24, 255, 0.06);
+  transform: translateY(-1px) translateZ(0);
+}
+
+.btn--ghost:active:not(:disabled) {
+  transform: scale(0.97) translateZ(0);
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transform: none !important;
+    transition: none !important;
+  }
+}

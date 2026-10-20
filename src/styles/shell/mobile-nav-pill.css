@@ -1,0 +1,59 @@
+/* src/styles/shell/mobile-nav-pill.css */
+
+.mobile-nav-pill {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-pill {
+    display: flex;
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    max-width: 420px;
+    margin: 0 auto;
+    height: 60px;
+    z-index: 50;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 8px;
+    box-sizing: border-box;
+  }
+
+  .mobile-nav__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: transparent;
+    border: none;
+    color: var(--venus-text-muted);
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: var(--venus-radius-sm, 12px);
+    transition: all 180ms ease;
+    min-width: 60px;
+    height: 48px;
+  }
+
+  .mobile-nav__item:focus-visible {
+    outline: 2px solid var(--venus-primary-indigo);
+    outline-offset: 1px;
+  }
+
+  .mobile-nav__item--active {
+    color: var(--venus-primary-indigo) !important;
+    font-weight: 700;
+  }
+
+  .mobile-nav__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

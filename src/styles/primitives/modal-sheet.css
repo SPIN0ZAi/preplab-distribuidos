@@ -1,0 +1,160 @@
+/* src/styles/primitives/modal-sheet.css */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(11, 15, 25, 0.45);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 200ms ease;
+  box-sizing: border-box;
+}
+
+[data-theme="dark"] .modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.70);
+}
+
+/* --------------------------------------------------------------------------
+   Modal Sheet Card
+   -------------------------------------------------------------------------- */
+.modal-sheet {
+  background-color: var(--venus-card-bg);
+  border: 1px solid var(--venus-card-border);
+  border-radius: var(--venus-radius-xl, 24px);
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.22),
+              0 0 0 1px rgba(255, 255, 255, 0.25) inset;
+  width: 100%;
+  max-width: 680px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+  transform: translateZ(0);
+  animation: modalSheetSpring 240ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalSheetSpring {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(12px) translateZ(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0) translateZ(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Header, Body & Footer
+   -------------------------------------------------------------------------- */
+.modal-sheet__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--venus-card-border);
+  gap: 16px;
+  background-color: var(--venus-card-bg);
+}
+
+.modal-sheet__titles {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.modal-sheet__title {
+  font-family: var(--font-display, var(--font-sans));
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--venus-text-headline);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.modal-sheet__subtitle {
+  font-size: 13px;
+  color: var(--venus-text-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.modal-sheet__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.modal-sheet__footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--venus-card-border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  background-color: var(--venus-bg-canvas);
+}
+
+/* Mobile Drawer Mode (< 768px) */
+@media (max-width: 768px) {
+  .modal-backdrop {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal-sheet {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 24px 24px 0 0;
+    border-bottom: none;
+    animation: modalDrawerSlide 240ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes modalDrawerSlide {
+    0% {
+      opacity: 0;
+      transform: translateY(100%) translateZ(0);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) translateZ(0);
+    }
+  }
+
+  .modal-sheet__header {
+    padding: 16px 20px;
+  }
+
+  .modal-sheet__body {
+    padding: 20px 16px;
+  }
+
+  .modal-sheet__footer {
+    padding: 14px 16px;
+  }
+}
+
+/* Accessibility: Reduced Transparency & Motion */
+@media (prefers-reduced-transparency: reduce) {
+  .modal-backdrop {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background-color: rgba(11, 15, 25, 0.85) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-sheet {
+    animation: none !important;
+  }
+}

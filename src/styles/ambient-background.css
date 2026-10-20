@@ -1,0 +1,77 @@
+/* src/styles/ambient-background.css */
+
+/* Isolated fixed container at z-index: 0 */
+.ambient-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: var(--venus-bg-canvas);
+  transition: background-color var(--glass-duration) ease;
+}
+
+/* Base Orb Layer with GPU Compositing */
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.85;
+  transform: translateZ(0); /* Hardware compositing layer */
+  pointer-events: none;
+}
+
+/* Light Theme: Soft Venus Indigo, Purple, and Coral Orbs */
+.ambient-orb-1 {
+  top: -12%;
+  left: -8%;
+  width: 55vw;
+  height: 55vw;
+  max-width: 680px;
+  max-height: 680px;
+  background: radial-gradient(circle, rgba(67, 24, 255, 0.08) 0%, rgba(67, 24, 255, 0.02) 50%, transparent 70%);
+}
+
+.ambient-orb-2 {
+  bottom: -15%;
+  right: -8%;
+  width: 50vw;
+  height: 50vw;
+  max-width: 620px;
+  max-height: 620px;
+  background: radial-gradient(circle, rgba(117, 81, 255, 0.07) 0%, rgba(117, 81, 255, 0.02) 50%, transparent 70%);
+}
+
+.ambient-orb-3 {
+  top: 30%;
+  right: 8%;
+  width: 36vw;
+  height: 36vw;
+  max-width: 440px;
+  max-height: 440px;
+  background: radial-gradient(circle, rgba(255, 122, 138, 0.05) 0%, rgba(255, 122, 138, 0.01) 50%, transparent 70%);
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"] .ambient-orb-1 {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(99, 102, 241, 0.03) 50%, transparent 70%);
+}
+
+[data-theme="dark"] .ambient-orb-2 {
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.10) 0%, rgba(168, 85, 247, 0.02) 50%, transparent 70%);
+}
+
+[data-theme="dark"] .ambient-orb-3 {
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, rgba(6, 182, 212, 0.01) 50%, transparent 70%);
+}
+
+/* Reduced Motion Fallback */
+@media (prefers-reduced-motion: reduce) {
+  .ambient-background,
+  .ambient-orb {
+    transition: none !important;
+  }
+}

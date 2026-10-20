@@ -1,0 +1,126 @@
+/* src/styles/charts/charts.css */
+
+.venus-chart-container {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  user-select: none;
+  overflow: hidden;
+}
+
+.venus-chart-svg {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Rounded Bar Chart
+   -------------------------------------------------------------------------- */
+.chart-bar {
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+              fill 180ms ease,
+              opacity 180ms ease;
+  cursor: pointer;
+  transform-origin: bottom;
+}
+
+.chart-bar:hover {
+  opacity: 0.88;
+}
+
+.chart-bar--highlighted {
+  filter: drop-shadow(0 6px 14px rgba(67, 24, 255, 0.35));
+}
+
+.chart-axis-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--venus-text-muted);
+  text-anchor: middle;
+}
+
+.chart-axis-label--active {
+  fill: var(--venus-primary-indigo);
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   Area Sparkline
+   -------------------------------------------------------------------------- */
+.sparkline-line {
+  fill: none;
+  stroke: var(--venus-primary-indigo);
+  stroke-width: 3px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sparkline-area {
+  opacity: 0.85;
+}
+
+.sparkline-point {
+  fill: #FFFFFF;
+  stroke: var(--venus-primary-indigo);
+  stroke-width: 2.5px;
+  transition: r 150ms ease;
+}
+
+.sparkline-point:hover {
+  r: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   Circular Gauge
+   -------------------------------------------------------------------------- */
+.circular-gauge-container {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.circular-gauge__bg {
+  fill: none;
+  stroke: var(--venus-bg-canvas);
+}
+
+.circular-gauge__fg {
+  fill: none;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 600ms cubic-bezier(0.16, 1, 0.3, 1),
+              stroke 300ms ease;
+}
+
+.circular-gauge__label {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.circular-gauge__value {
+  font-family: var(--font-display, var(--font-sans));
+  font-weight: 800;
+  color: var(--venus-text-headline);
+  line-height: 1;
+}
+
+.circular-gauge__subtext {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--venus-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}

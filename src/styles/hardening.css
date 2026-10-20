@@ -1,0 +1,167 @@
+/* ==========================================================================
+   HARDENING, RESPONSIVE & ACCESSIBILITY ENHANCEMENTS (Unit U10)
+   ========================================================================== */
+
+/* Universal Focus Visible Styling (WCAG 2.2 Criterion 2.4.7) */
+:focus-visible {
+  outline: 2px solid var(--venus-primary-indigo, #4318FF) !important;
+  outline-offset: 2px !important;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--venus-primary-indigo, #4318FF) !important;
+  outline-offset: 2px !important;
+}
+
+/* Horizontal Overflow Protection */
+body, #root {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Word breaking on question prompts and titles to prevent viewport widening */
+h1, h2, h3, h4, h5, h6, p, .question-card__prompt, .review-item__prompt {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* Code blocks and JSON outputs receive responsive horizontal scroll */
+pre, code {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Sleek Venus custom scrollbars */
+pre::-webkit-scrollbar,
+.quiz-pills-scroll::-webkit-scrollbar,
+.modal-sheet__body::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+pre::-webkit-scrollbar-track,
+.quiz-pills-scroll::-webkit-scrollbar-track,
+.modal-sheet__body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+pre::-webkit-scrollbar-thumb,
+.quiz-pills-scroll::-webkit-scrollbar-thumb,
+.modal-sheet__body::-webkit-scrollbar-thumb {
+  background: var(--venus-card-border);
+  border-radius: 9999px;
+}
+
+pre::-webkit-scrollbar-thumb:hover,
+.quiz-pills-scroll::-webkit-scrollbar-thumb:hover,
+.modal-sheet__body::-webkit-scrollbar-thumb:hover {
+  background: var(--venus-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Touch Target Expansions (WCAG 2.2 Success Criterion 2.5.8)
+   -------------------------------------------------------------------------- */
+@media (pointer: coarse) {
+  /* Expand tap area on compact icon buttons */
+  .venus-icon-button {
+    position: relative;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Expand quiz pills tap targets */
+  .pill-nav-btn {
+    position: relative;
+  }
+
+  .pill-nav-btn::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    bottom: -6px;
+    left: -4px;
+    right: -4px;
+  }
+
+  /* Expand segmented control tabs on touch screens */
+  .segmented-tab {
+    min-height: 40px;
+    padding: 8px 16px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Thermal Throttling & Viewport Caps (<= 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  /* Constrain background canvas blur cost */
+  .ambient-canvas__mesh {
+    animation-duration: 24s !important;
+    filter: blur(40px) !important;
+  }
+
+  /* Ensure bottom padding accounts for mobile navigation pill */
+  .app-shell__content {
+    padding-bottom: 96px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Windows High Contrast Mode / Forced Colors Support
+   -------------------------------------------------------------------------- */
+@media (forced-colors: active) {
+  /* Disable glass blur and transparent fills in favor of system canvas */
+  .glass-surface,
+  .inset-sidebar,
+  .inset-topbar,
+  .mobile-nav-pill,
+  .modal-sheet,
+  .quiz-timer-pill {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: Canvas !important;
+    color: CanvasText !important;
+    border: 1.5px solid CanvasText !important;
+    box-shadow: none !important;
+  }
+
+  .glass-surface::before,
+  .inset-sidebar::before,
+  .inset-topbar::before,
+  .mobile-nav-pill::before,
+  .modal-sheet::before {
+    display: none !important;
+  }
+
+  .venus-card,
+  .metric-card,
+  .analytics-card,
+  .launch-card,
+  .question-card-venus,
+  .results-hero-card,
+  .review-item-card {
+    border: 1.5px solid CanvasText !important;
+    box-shadow: none !important;
+  }
+
+  .option-card {
+    border: 1.5px solid CanvasText !important;
+  }
+
+  .option-card--selected {
+    border: 2px solid Highlight !important;
+    background-color: Highlight !important;
+    color: HighlightText !important;
+  }
+
+  :focus-visible {
+    outline: 2px solid Highlight !important;
+    outline-offset: 2px !important;
+  }
+}

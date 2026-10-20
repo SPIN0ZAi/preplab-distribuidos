@@ -1,0 +1,186 @@
+/* src/styles/shell/inset-sidebar.css */
+
+.inset-sidebar {
+  position: sticky;
+  top: 20px;
+  height: calc(100vh - 40px);
+  width: 260px;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 16px;
+  z-index: 20;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   Brand Header
+   -------------------------------------------------------------------------- */
+.sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 8px 20px 8px;
+  border-bottom: 1px solid var(--venus-card-border);
+}
+
+.sidebar__logo-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--venus-primary-indigo) 0%, var(--venus-primary-purple) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  box-shadow: 0 8px 16px rgba(67, 24, 255, 0.32);
+  flex-shrink: 0;
+}
+
+.sidebar__brand-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.sidebar__brand-title {
+  font-family: var(--font-display, var(--font-sans));
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--venus-text-headline);
+  line-height: 1.2;
+}
+
+.sidebar__brand-subtitle {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--venus-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Navigation Menu
+   -------------------------------------------------------------------------- */
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sidebar__section-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--venus-text-muted);
+  padding: 8px 12px 4px 12px;
+}
+
+.sidebar__nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--venus-radius-sm, 12px);
+  border: none;
+  background: transparent;
+  color: var(--venus-text-muted);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  position: relative;
+  transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sidebar__nav-item-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidebar__nav-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+}
+
+.sidebar__nav-item:hover:not(:disabled) {
+  background-color: rgba(67, 24, 255, 0.05);
+  color: var(--venus-text-headline);
+}
+
+.sidebar__nav-item:focus-visible {
+  outline: 2px solid var(--venus-primary-indigo);
+  outline-offset: 1px;
+}
+
+.sidebar__nav-item:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Active Navigation Item */
+.sidebar__nav-item--active {
+  background: linear-gradient(135deg, rgba(67, 24, 255, 0.12) 0%, rgba(117, 81, 255, 0.05) 100%) !important;
+  color: var(--venus-primary-indigo) !important;
+  font-weight: 700;
+}
+
+.sidebar__nav-item--active::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 22px;
+  border-radius: 4px 0 0 4px;
+  background-color: var(--venus-primary-indigo);
+}
+
+/* --------------------------------------------------------------------------
+   Sidebar Footer Widget
+   -------------------------------------------------------------------------- */
+.sidebar__footer {
+  padding-top: 16px;
+  border-top: 1px solid var(--venus-card-border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar__stat-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: var(--venus-radius-md, 14px);
+  background-color: var(--venus-bg-canvas);
+  border: 1px solid var(--venus-card-border);
+  font-size: 12px;
+}
+
+.sidebar__stat-pill-label {
+  font-weight: 600;
+  color: var(--venus-text-muted);
+}
+
+.sidebar__stat-pill-value {
+  font-weight: 800;
+  color: var(--venus-primary-indigo);
+}
+
+/* Mobile Breakpoint Hiding */
+@media (max-width: 768px) {
+  .inset-sidebar {
+    display: none !important;
+  }
+}

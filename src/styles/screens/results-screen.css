@@ -1,0 +1,251 @@
+/* src/styles/screens/results-screen.css */
+
+.results-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   Hero Score Card (Venus Soft-UI + Circular Gauge)
+   -------------------------------------------------------------------------- */
+.results-hero-card {
+  background-color: var(--venus-card-bg);
+  border: 1px solid var(--venus-card-border);
+  border-radius: var(--venus-radius-xl, 24px);
+  padding: 36px 30px;
+  box-shadow: var(--venus-shadow-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.results-hero__title {
+  font-family: var(--font-display, var(--font-sans));
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--venus-text-headline);
+  margin: 0;
+}
+
+.results-hero__desc {
+  font-size: 14px;
+  color: var(--venus-text-muted);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   Stats Summary Grid
+   -------------------------------------------------------------------------- */
+.results-stats-deck {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.results-stat-box {
+  background-color: var(--venus-bg-canvas);
+  border: 1px solid var(--venus-card-border);
+  border-radius: var(--venus-radius-md, 14px);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.results-stat-box__label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--venus-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.results-stat-box__value {
+  font-family: var(--font-display, var(--font-sans));
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--venus-text-headline);
+}
+
+.results-actions-deck {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   Detailed Review Deck
+   -------------------------------------------------------------------------- */
+.review-deck {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.review-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.review-header__title {
+  font-family: var(--font-display, var(--font-sans));
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--venus-text-headline);
+  margin: 0;
+}
+
+.review-item-card {
+  background-color: var(--venus-card-bg);
+  border: 1px solid var(--venus-card-border);
+  border-radius: var(--venus-radius-lg, 18px);
+  padding: 22px 24px;
+  box-shadow: var(--venus-shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.review-item-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+}
+
+.review-item-card--correct::before {
+  background-color: var(--venus-accent-emerald);
+}
+
+.review-item-card--incorrect::before {
+  background-color: var(--venus-accent-coral);
+}
+
+.review-item__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.review-item__tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.review-item__prompt {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--venus-text-headline);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.review-options-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.review-option-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--venus-radius-sm, 10px);
+  border: 1px solid var(--venus-card-border);
+  background-color: var(--venus-bg-canvas);
+  font-size: 13px;
+  color: var(--venus-text-headline);
+}
+
+.review-option-row--correct {
+  background-color: rgba(5, 205, 153, 0.10);
+  border-color: rgba(5, 205, 153, 0.35);
+}
+
+.review-option-row--wrong-user {
+  background-color: rgba(238, 93, 80, 0.10);
+  border-color: rgba(238, 93, 80, 0.35);
+}
+
+.review-option__marker {
+  font-weight: 800;
+  min-width: 20px;
+}
+
+.explanation-callout {
+  background-color: var(--venus-bg-canvas);
+  border: 1px solid var(--venus-card-border);
+  border-radius: var(--venus-radius-md, 14px);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.explanation-callout__header {
+  font-weight: 700;
+  color: var(--venus-text-headline);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.explanation-callout__correct {
+  color: var(--venus-text-headline);
+  line-height: 1.45;
+}
+
+.explanation-callout__distractors {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 8px;
+  border-top: 1px solid var(--venus-card-border);
+}
+
+.explanation-callout__distractor-item {
+  color: var(--venus-text-muted);
+  line-height: 1.4;
+  font-size: 12px;
+}
+
+.explanation-callout__source {
+  font-size: 11px;
+  color: var(--venus-text-disabled);
+  text-align: right;
+  margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+  .results-stats-deck {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

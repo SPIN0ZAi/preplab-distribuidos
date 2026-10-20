@@ -1,0 +1,177 @@
+/* src/styles/glass-surface.css */
+
+/* ==========================================================================
+   LIQUID GLASS MATERIAL SYSTEM (Apple iOS 26 Aesthetic - 6-Layer Optical Recipe)
+   ========================================================================== */
+
+.glass-surface {
+  position: relative;
+  isolation: isolate;
+  border: var(--glass-border);
+  box-shadow: var(--glass-edge-highlight), var(--glass-edge-shade), var(--glass-shadow);
+  color: var(--glass-text);
+  transform: translateZ(0); /* Hardware compositing */
+  transition: background-color var(--glass-duration) ease,
+              border-color var(--glass-duration) ease,
+              box-shadow var(--glass-duration) ease,
+              transform var(--glass-duration) var(--glass-ease);
+}
+
+/* Layer 5: Diagonal Surface Sheen Reflection (Pseudo-Element) */
+.glass-surface::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--glass-sheen);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Children sit cleanly above the specular sheen */
+.glass-surface > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Material Variants (Blur Tiers & Fills)
+   -------------------------------------------------------------------------- */
+
+/* Variant 1: Thin (Badges, Controls, Floating Status Pills) */
+.glass-surface--thin {
+  -webkit-backdrop-filter: blur(var(--glass-blur-thin)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur-thin)) saturate(var(--glass-saturate));
+  background-color: var(--glass-fill-thin);
+}
+
+/* Variant 2: Regular (Floating Inset Topbar, Inset Sidebar, Toolbars) */
+.glass-surface--regular {
+  -webkit-backdrop-filter: blur(var(--glass-blur-regular)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur-regular)) saturate(var(--glass-saturate));
+  background-color: var(--glass-fill-regular);
+  box-shadow: var(--glass-edge-highlight), var(--glass-edge-shade), var(--glass-shadow-floating);
+}
+
+/* Variant 3: Thick (Modal Sheets, Mobile Bottom Drawers, Menus) */
+.glass-surface--thick {
+  -webkit-backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur-thick)) saturate(var(--glass-saturate));
+  background-color: var(--glass-fill-thick);
+  box-shadow: var(--glass-edge-highlight), var(--glass-edge-shade), var(--glass-shadow-modal);
+}
+
+/* --------------------------------------------------------------------------
+   Tone Variations
+   -------------------------------------------------------------------------- */
+
+/* Indigo Accent Glass (Active Navigation Pills, Selected Chips) */
+.glass-surface--accent {
+  background-color: var(--glass-fill-accent);
+  border-color: rgba(67, 24, 255, 0.35);
+  box-shadow: var(--glass-edge-highlight), 0 0 20px rgba(67, 24, 255, 0.15);
+}
+
+/* Ultra-clear Glass */
+.glass-surface--clear {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   Shape Variations
+   -------------------------------------------------------------------------- */
+
+.glass-surface--rounded {
+  border-radius: var(--venus-radius-lg);
+}
+
+.glass-surface--pill {
+  border-radius: var(--venus-radius-pill);
+}
+
+.glass-surface--circle {
+  border-radius: 50%;
+}
+
+.glass-surface--flat {
+  border-radius: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Interactive States (Spring Lift & Tactile Press)
+   -------------------------------------------------------------------------- */
+
+.glass-surface--interactive {
+  cursor: pointer;
+  user-select: none;
+}
+
+.glass-surface--interactive:hover {
+  transform: translateY(-1px) translateZ(0);
+  box-shadow: var(--glass-edge-highlight), var(--glass-edge-shade), var(--glass-shadow-floating);
+}
+
+.glass-surface--interactive:active {
+  transform: scale(0.98) translateZ(0);
+}
+
+/* Accessible Focus Ring */
+.glass-surface--interactive:focus-visible {
+  outline: 2px solid var(--venus-primary-indigo);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Graceful Degradation Fallbacks (Rule 10 & WCAG Compliance)
+   -------------------------------------------------------------------------- */
+
+/* 1. Browsers Without backdrop-filter Support */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-surface--thin,
+  .glass-surface--regular,
+  .glass-surface--thick {
+    background-color: var(--glass-fallback-fill);
+    border: 1px solid var(--glass-fallback-border);
+  }
+}
+
+/* 2. Reduced Transparency Mode (Accessibility) */
+@media (prefers-reduced-transparency: reduce) {
+  .glass-surface--thin,
+  .glass-surface--regular,
+  .glass-surface--thick {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background-color: var(--glass-fallback-fill) !important;
+    border: 1px solid var(--glass-fallback-border) !important;
+  }
+  .glass-surface::before {
+    display: none !important;
+  }
+}
+
+/* 3. Forced Colors (High Contrast Mode) */
+@media (forced-colors: active) {
+  .glass-surface {
+    border: 1px solid CanvasText !important;
+    box-shadow: none !important;
+    background-color: Canvas !important;
+    color: CanvasText !important;
+  }
+  .glass-surface::before {
+    display: none !important;
+  }
+}
+
+/* 4. Mobile Screen Blur Radius Capping (Thermal Throttle Protection) */
+@media (max-width: 768px) {
+  .glass-surface--regular {
+    -webkit-backdrop-filter: blur(var(--glass-blur-mobile)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur-mobile)) saturate(var(--glass-saturate));
+  }
+  .glass-surface--thick {
+    -webkit-backdrop-filter: blur(16px) saturate(var(--glass-saturate));
+    backdrop-filter: blur(16px) saturate(var(--glass-saturate));
+  }
+}

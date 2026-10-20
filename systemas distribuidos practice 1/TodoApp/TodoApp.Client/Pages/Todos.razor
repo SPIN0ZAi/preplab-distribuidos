@@ -1,0 +1,86 @@
+@page "/"
+@page "/todos"
+@using TodoApp.Client.Models
+@using TodoApp.Client.Services
+@inject TodoService TodoService
+
+<h3><span><img src="todo-logo.svg" alt="Todo App Logo" class="logo-img" /></span> To-Do List</h3>
+
+@if (todos == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="mb-3">
+        <div class="input-group">
+            <input type="text" class="form-control" @bind="newTodoName" placeholder="Add a new todo" />
+            <button class="btn btn-primary" @onclick="AddTodo">Add</button>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Finished</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var todo in todos)
+            {
+                <tr>
+                    <td>@todo.Name</td>
+                    <td>
+                        <input type="checkbox" @bind="todo.IsComplete" @onclick="() => ToggleTodoStatus(todo)" />
+                    </td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" @onclick="() => DeleteTodo(todo.Id)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Todo>? todos;
+    private string? newTodoName;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadTodos();
+    }
+
+    private async Task LoadTodos()
+    {
+        todos = await TodoService.GetAllTodosAsync();
+    }
+
+    private async Task AddTodo()
+    {
+        if (!string.IsNullOrWhiteSpace(newTodoName))
+        {
+            var todo = new Todo { Name = newTodoName, IsComplete = false };
+            await TodoService.CreateTodoAsync(todo);
+            newTodoName = string.Empty;
+            await LoadTodos();
+        }
+    }
+
+    private async Task ToggleTodoStatus(Todo todo)
+    {
+        todo.IsComplete = !todo.IsComplete;
+        await TodoService.UpdateTodoAsync(todo);
+        await LoadTodos();
+    }
+
+    private async Task DeleteTodo(int id)
+    {
+        if (await TodoService.DeleteTodoAsync(id))
+        {
+            await LoadTodos();
+        }
+    }
+}

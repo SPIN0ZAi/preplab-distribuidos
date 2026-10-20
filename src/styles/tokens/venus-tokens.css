@@ -1,0 +1,82 @@
+/* src/styles/tokens/venus-tokens.css */
+/* Venus Content Layer Tokens (Figma kit aesthetic) */
+
+:root {
+  /* Typography Families */
+  --font-display: 'Poppins', var(--font-sans);
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Canvas & Card Surfaces (Light Mode Default) */
+  --venus-bg-canvas: #F4F7FE;
+  --venus-card-bg: #FFFFFF;
+  --venus-card-bg-subtle: #F8FAFC;
+  --venus-card-border: rgba(226, 232, 240, 0.80);
+
+  /* Brand Accents */
+  --venus-primary-indigo: #4318FF;
+  --venus-primary-hover: #3311CC;
+  --venus-primary-light: rgba(67, 24, 255, 0.08);
+  --venus-secondary-purple: #7551FF;
+  --venus-accent-coral: #FF7A8A;
+  --venus-gradient-brand: linear-gradient(135deg, #4318FF 0%, #7551FF 100%);
+  --venus-gradient-coral: linear-gradient(135deg, #FF7A8A 0%, #EE5D6C 100%);
+
+  /* Typography Colors (High Contrast) */
+  --venus-text-headline: #1B2559;
+  --venus-text-body: #2B3674;
+  --venus-text-muted: #707EAE;
+  --venus-text-disabled: #A3AED0;
+
+  /* Status Colors & Soft Pills */
+  --venus-success: #05CD99;
+  --venus-success-bg: rgba(5, 205, 153, 0.12);
+  --venus-success-border: rgba(5, 205, 153, 0.35);
+
+  --venus-danger: #EE5D6C;
+  --venus-danger-bg: rgba(238, 93, 108, 0.12);
+  --venus-danger-border: rgba(238, 93, 108, 0.35);
+
+  --venus-warning: #FFB547;
+  --venus-warning-bg: rgba(255, 181, 71, 0.12);
+  --venus-warning-border: rgba(255, 181, 71, 0.35);
+
+  /* Chart Accents */
+  --venus-chart-bar-inactive: #E9EDF7;
+  --venus-chart-bar-active: #4318FF;
+  --venus-chart-grid: rgba(226, 232, 240, 0.60);
+
+  /* Spatial Scale (8px Grid) */
+  --venus-space-2xs: 2px;
+  --venus-space-xs: 4px;
+  --venus-space-sm: 8px;
+  --venus-space-md: 16px;
+  --venus-space-lg: 24px;
+  --venus-space-xl: 32px;
+  --venus-space-2xl: 48px;
+  --venus-space-3xl: 64px;
+
+  /* Card & Control Radii */
+  --venus-radius-sm: 12px;
+  --venus-radius-md: 16px;
+  --venus-radius-lg: 20px;
+  --venus-radius-xl: 24px;
+  --venus-radius-pill: 9999px;
+
+  /* Diffuse Soft-UI Shadows */
+  --venus-shadow-sm: 0 2px 8px rgba(112, 144, 176, 0.08);
+  --venus-shadow-card: 0 18px 40px rgba(112, 144, 176, 0.12);
+  --venus-shadow-hover: 0 22px 45px rgba(112, 144, 176, 0.20);
+  --venus-shadow-glow: 0 12px 24px rgba(67, 24, 255, 0.25);
+  --venus-shadow-coral-glow: 0 12px 24px rgba(255, 122, 138, 0.25);
+
+  /* Standard Motion Tokens */
+  --motion-ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --motion-ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-duration-fast: 140ms;
+  --motion-duration-normal: 240ms;
+  --motion-duration-deliberate: 420ms;
+  --motion-lift-y: -2px;
+  --motion-press-scale: 0.98;
+}
